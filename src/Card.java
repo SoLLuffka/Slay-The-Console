@@ -8,4 +8,6 @@ public abstract class Card {
     }
 
     public abstract void use(Player p, Enemy e);
+
+    public String getName() { return this.name; }
 }

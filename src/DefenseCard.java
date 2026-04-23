@@ -10,6 +10,7 @@ public class DefenseCard extends Card {
     public void use(Player p, Enemy e) {
         if(p.energy >= this.cost) {
             p.getBlock(this.block);
+            p.energy -= this.cost;
         } else System.out.println("Gracz posiada za malo energi aby uzyc tej karty.");
     }
 }

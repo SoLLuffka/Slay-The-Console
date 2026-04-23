@@ -4,7 +4,6 @@ import  java.util.List;
  class Player extends Entity {
     private int money;
     protected int energy;
-
     public Player(int hp, int maxHp, int money, int energy, int block) {
         super(hp, maxHp, block);
         this.money = money;
@@ -12,6 +11,16 @@ import  java.util.List;
 
         this.deck = new ArrayList<>();
     }
-
     private List<Card> deck;
+
+    public void addCardToDeck(Card card) {
+        this.deck.add(card);
+    }
+
+    public void showDeck() {
+        System.out.println("Talia gracza:");
+        for (Card c : this.deck) {
+            System.out.println("- " + c.getName());
+        }
+    }
 }
