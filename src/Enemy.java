@@ -4,7 +4,6 @@ public class Enemy extends Entity {
 
     public Enemy(int hp, int maxHp, int block, String name, int damage) {
         super(hp, maxHp, block);
-        this.block = block;
         this.name = name;
         this.damage = damage;
     }
