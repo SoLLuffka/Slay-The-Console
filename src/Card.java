@@ -13,7 +13,5 @@ public abstract class Card {
 
     public String getName() { return this.name; }
 
-    public int getCost() {
-        return this.cost;
-    }
+    public int getCost() { return this.cost; }
 }

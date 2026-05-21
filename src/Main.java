@@ -18,7 +18,6 @@ public class Main {
 
             String choice = scanner.nextLine().trim();
 
-            // Używamy instrukcji switch z prezentacji z wykładów
             switch (choice) {
                 case "1":
                     // Tworzymy obiekt nowej klasy i odpalamy grę
@@ -30,10 +29,9 @@ public class Main {
                     System.out.println("\n=================================================");
                     System.out.println("                    CREDITS                      ");
                     System.out.println("=================================================");
-                    System.out.println("Autor projektu: [Wpisz tutaj swoje imię i nazwisko]");
-                    System.out.println("Kierunek: Informatyka / Studia");
-                    System.out.println("Rok akademicki: 2025/2026");
-                    System.out.println("Wsparcie deweloperskie: AI Sidekick");
+                    System.out.println("Autor projektu: Kamil Tereszkiewicz, 183972");
+                    System.out.println("Kierunek: Informatyka");
+                    System.out.println("Rok akademicki: 2026");
                     System.out.println("=================================================");
                     System.out.println("(Wcisnij ENTER, aby powrocic do menu...)");
                     scanner.nextLine();
@@ -50,7 +48,6 @@ public class Main {
                     break;
             }
         }
-
-        scanner.close(); // Całkowite zamknięcie skanera na koniec programu
+        scanner.close();
     }
 }

@@ -2,7 +2,7 @@ import java.util.Scanner;
 public class Game {
     public void start(Scanner scanner) {
         Player player = new Player(80, 80, 134, 3, 15);
-        Enemy enemy = new Enemy(80, 80, 45, "Mask of legendary samurai", 25);
+        Enemy enemy = new Enemy(80, 80, 15, "Mask of legendary samurai", 25);
 
         // Inicjalizacja talii 12 kart
         player.addCardToDeck(new AttackCard("Sword swing", 1, 4));
@@ -137,7 +137,7 @@ public class Game {
         if (player.getHp() <= 0) {
             System.out.println("Przegrales! " + enemy.getName() + " okazal sie silniejszy.");
         } else {
-            System.out.println("GRATULACJE! Pokonales bosa!");
+            System.out.println("GRATULACJE! Pokonales "+ enemy.getName() + "!");
         }
 
         System.out.println("\n(Wcisnij ENTER, aby powrocic do Menu Glownego...)");

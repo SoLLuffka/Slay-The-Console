@@ -27,15 +27,7 @@ public abstract class Entity {
         }
     }
 
-    public void getBlock(int amount) {
-        this.block += amount;
-    }
-
-    public int getHp() {
-        return this.hp;
-    }
-
-    public int getBlock() {
-        return this.block;
-    }
+    public void getBlock(int amount) { this.block += amount; }
+    public int getHp() { return this.hp; }
+    public int getBlock() { return this.block; }
 }
