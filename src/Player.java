@@ -1,47 +1,76 @@
 import java.util.ArrayList;
+import java.util.Collections;
 import  java.util.List;
 
  class Player extends Entity {
     private int money;
     protected int energy;
-    private List<Card> deck;
+     private List<Card> drawPile;
+     private List<Card> hand;
+     private List<Card> discardPile;
     public Player(int hp, int maxHp, int money, int energy, int block) {
         super(hp, maxHp, block);
         this.money = money;
         this.energy = energy;
 
-        this.deck = new ArrayList<>();
+        this.drawPile = new ArrayList<>();
+        this.hand = new ArrayList<>();
+        this.discardPile = new ArrayList<>();
     }
 
     public void addCardToDeck(Card card) {
-        this.deck.add(card);
+        this.drawPile.add(card);
     }
 
-    public void showDeck() {
-        for (int i = 0; i < this.deck.size(); i++) {
-            System.out.println((i + 1) + ". " + this.deck.get(i).getName() + " (Koszt energii: " + this.deck.get(i).getCost() + ")");
+    public void shuffleDeck() {
+        Collections.shuffle(this.drawPile);
+        System.out.println("[SYSTEM] Talia startowa została przetasowana!");
+    }
+
+    public void drawCards(int amount) {
+        for (int i = 0; i < amount; i++) {
+            // Jeśli stos dobierania jest pusty, przetasuj odrzucone z powrotem
+            if (this.drawPile.isEmpty()) {
+                if (this.discardPile.isEmpty()) {
+                    break; // Nie ma czego dobierać (np. wyczerpano wszystkie karty)
+                }
+                this.drawPile.addAll(this.discardPile);
+                this.discardPile.clear();
+                Collections.shuffle(this.drawPile); // Tasowanie!
+                System.out.println("\n[SYSTEM] Przetasowano stos odrzuconych do stosu dobierania!");
+            }
+
+            // Pobierz pierwszą kartę z góry stosu i przenieś na rękę
+            Card drawnCard = this.drawPile.remove(0);
+            this.hand.add(drawnCard);
         }
+    }
+
+    // Zrzucanie całej ręki na koniec tury (jak w oryginalnej grze)
+    public void discardHand() {
+        this.discardPile.addAll(this.hand);
+        this.hand.clear();
+    }
+
+    // Przeniesienie konkretnej zagranej karty na stos odrzuconych
+    public void moveCardToDiscard(Card card) {
+        this.hand.remove(card);
+        this.discardPile.add(card);
     }
 
     // Zarządzanie energią
-    public int getEnergy() {
-        return this.energy;
-    }
-    public void setEnergy(int energy) {
-        this.energy = energy;
-    }
-
-    // Rozmiar talii (potrzebne, by wiedzieć, ile gracz ma opcji do wyboru)
-    public int getDeckSize() {
-        return this.deck.size();
-    }
+    public int getEnergy() { return this.energy; }
+    public void setEnergy(int energy) { this.energy = energy; }
+    public int getHandSize() { return this.hand.size(); }
+    public int getDrawPileSize() { return this.drawPile.size(); }
+    public int getDiscardPileSize() { return this.discardPile.size(); }
 
     // Wyciąganie konkretnej karty z listy po numerze (indeksie)
-    public Card getCardFromDeck(int index) {
-        if (index >= 0 && index < this.deck.size()) {
-            return this.deck.get(index);
+    public Card getCardFromHand(int index) {
+        if (index >= 0 && index < this.hand.size()) {
+            return this.hand.get(index);
         }
-        return null; // Zwraca null (nic), jeśli ktoś wpisze zły numer
+        return null;
     }
 
     // Zerowanie bloku na koniec tury (mechanika Slay the Spire)
