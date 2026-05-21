@@ -7,4 +7,12 @@ public class Enemy extends Entity {
         this.name = name;
         this.damage = damage;
     }
+
+    public String getName() {
+        return this.name;
+    }
+
+    public int getDamage() {
+        return this.damage;
+    }
 }

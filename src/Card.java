@@ -9,5 +9,11 @@ public abstract class Card {
 
     public abstract void use(Player p, Enemy e);
 
+    public abstract void printHelp();
+
     public String getName() { return this.name; }
+
+    public int getCost() {
+        return this.cost;
+    }
 }

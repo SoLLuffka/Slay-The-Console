@@ -23,11 +23,19 @@ public abstract class Entity {
         } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());
         } finally {
-            System.out.println("Po skończonej turze graczu zostało: " + this.hp + "HP oraz " + this.block + " punktów bloku.");
+            System.out.println("---> Skutek akcji: Pozostało " + this.hp + " HP oraz " + this.block + " punktów bloku.");
         }
     }
 
     public void getBlock(int amount) {
         this.block += amount;
+    }
+
+    public int getHp() {
+        return this.hp;
+    }
+
+    public int getBlock() {
+        return this.block;
     }
 }
